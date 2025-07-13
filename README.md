@@ -9,13 +9,6 @@ Este repositório contém o serviço **Backend** desenvolvido em **Spring Boot**
 - [Tecnologias](#-tecnologias)  
 - [Pré-requisitos](#-pré-requisitos)  
 - [Instalação](#-instalação)  
-- [Configuração](#-configuração)  
-- [Execução](#-execução)  
-- [Endpoints](#-endpoints)  
-- [Acesso à Console H2](#-acesso-à-console-h2)  
-- [Estrutura do Banco](#-estrutura-do-banco)  
-- [Contribuição](#-contribuição)  
-- [Licença](#-licença)
 
 ---
 
