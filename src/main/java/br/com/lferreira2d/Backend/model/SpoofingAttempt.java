@@ -19,7 +19,10 @@ public class SpoofingAttempt implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "ID", updatable = false, nullable = false, columnDefinition = "UUID DEFAULT RANDOM_UUID()")
+    @Column(name = "ID",
+            updatable = false,
+            nullable = false,
+            columnDefinition = "UUID")
     private UUID id;
 
     @Column(name = "ATTEMPT_DATE_HOUR", nullable = false, columnDefinition = "TIMESTAMP")
