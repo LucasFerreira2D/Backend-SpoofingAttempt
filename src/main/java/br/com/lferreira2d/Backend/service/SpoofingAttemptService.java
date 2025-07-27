@@ -29,6 +29,9 @@ public class SpoofingAttemptService {
 
     @Transactional
     public SpoofingAttempt create(SpoofingAttempt attempt) {
+        if (attempt.getId() == null) {
+            attempt.setId(UUID.randomUUID());
+        }
         return repository.save(attempt);
     }
 

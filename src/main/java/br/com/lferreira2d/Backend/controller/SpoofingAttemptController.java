@@ -74,24 +74,22 @@ public class SpoofingAttemptController {
 
 
     @PostMapping("/spoofing")
-    public ResponseEntity<?> createSpoofingAttempt(
-            @Valid @RequestBody SpoofingAttempt attempt) {
+    public ResponseEntity<?> createSpoofingAttempts(
+            @RequestBody List<@Valid SpoofingAttempt> attempts) {
 
-        log.info("Handling POST /spoofing – payload: {}", attempt);
+        log.info("Handling POST /spoofing – lista com {} registros", attempts.size());
+
         try {
-            SpoofingAttempt saved = service.create(attempt);
-            log.info("Created SpoofingAttempt with id={}", saved.getId());
+            List<SpoofingAttempt> salvos = attempts.stream()
+                    .map(service::create)
+                    .toList();
 
-            URI location = URI.create(String.format("/api/spoofing/%s", saved.getId()));
-            return ResponseEntity
-                    .created(location)
-                    .body(saved);
+            return ResponseEntity.ok(salvos);
 
         } catch (Exception ex) {
-            log.error("Error saving spoofing attempt", ex);
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Erro interno ao registrar tentativa de spoofing");
+            log.error("Erro ao salvar lista de spoofing", ex);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro ao registrar tentativas de spoofing");
         }
     }
 

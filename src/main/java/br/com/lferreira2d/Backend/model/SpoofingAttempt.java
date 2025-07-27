@@ -1,5 +1,6 @@
 package br.com.lferreira2d.Backend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,15 +18,11 @@ import java.util.UUID;
 public class SpoofingAttempt implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "ID",
-            updatable = false,
-            nullable = false,
-            columnDefinition = "UUID")
+    @Column(name = "ID", updatable = false, nullable = false, columnDefinition = "UUID")
     private UUID id;
 
     @Column(name = "ATTEMPT_DATE_HOUR", nullable = false, columnDefinition = "TIMESTAMP")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime attemptDateHour;
 
     @Column(name = "LATITUDE")
